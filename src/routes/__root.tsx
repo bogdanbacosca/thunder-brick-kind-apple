@@ -1,5 +1,12 @@
 import type { ReactNode } from "react";
-import { createRootRoute, HeadContent, Outlet, Scripts, useRouterState } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  HeadContent,
+  Link,
+  Outlet,
+  Scripts,
+  useRouterState,
+} from "@tanstack/react-router";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";

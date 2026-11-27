@@ -20,7 +20,7 @@
  * `process.env`, which is why the merge has to happen before Vite starts.
  */
 import { spawn } from "node:child_process";
-import { readFileSync, realpathSync } from "node:fs";
+import { accessSync, constants, readFileSync, realpathSync } from "node:fs";
 import { constants as osConstants } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -104,6 +104,25 @@ export function isMainModule(moduleUrl) {
   }
 }
 
+/**
+ * Spawn a command, resolving bare binaries (e.g. `vite`) through the local
+ * `node_modules/.bin`. On Windows the `.bin` shims are shell/cmd scripts that
+ * CreateProcess cannot run directly, so they are executed through `cmd /c`.
+ */
+function spawnCommand(command, args, env) {
+  if (process.platform !== "win32") {
+    return spawn(command, args, { stdio: "inherit", env });
+  }
+  const bin = join(projectRoot(), "node_modules", ".bin");
+  const shim = join(bin, `${command}.cmd`);
+  try {
+    accessSync(shim, constants.X_OK);
+    return spawn("cmd", ["/c", shim, ...args], { stdio: "inherit", env, windowsHide: true });
+  } catch {
+    return spawn(command, args, { stdio: "inherit", env });
+  }
+}
+
 function main(argv) {
   const [command, ...args] = argv;
   if (!command) {
@@ -111,7 +130,7 @@ function main(argv) {
     process.exit(2);
   }
   const env = mergeAppEnv(readAppEnv(projectRoot()), process.env);
-  const child = spawn(command, args, { stdio: "inherit", env });
+  const child = spawnCommand(command, args, env);
   // The dev server is long-running and is stopped by signalling this wrapper.
   for (const signal of ["SIGINT", "SIGTERM", "SIGHUP"]) {
     process.on(signal, () => child.kill(signal));
