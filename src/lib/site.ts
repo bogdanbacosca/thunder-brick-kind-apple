@@ -121,29 +121,58 @@ export const services: Service[] = [
     slug: "produse-promotionale",
     title: "Produse promoționale",
     kicker: "Obiecte care circulă",
-    summary: "Pixul, agenda și tricoul duc numele firmei mai departe decât un flyer lăsat pe masă.",
+    summary:
+      "Pixul, agenda, tricoul, șepci, duc numele firmei mai departe decât un flyer lăsat pe masă.",
     image: "/media/work-4.jpg",
     imageAlt: "Cadouri și produse promoționale personalizate",
     items: [
-      { name: "Pixuri", body: "Serii pentru târg, recepție sau kit de bun venit. Gravură sau print, după material." },
-      { name: "Notebook-uri și agende", body: "Coperți personalizate pentru echipe, clienți sau conferințe." },
-      { name: "Brelocuri", body: "Mici, ținute în buzunar. Utile când campania trebuie să rămână la îndemână." },
-      { name: "Tricouri, veste, geci", body: "Pentru echipe, evenimente și uniforme lejere. Personalizare pe textil." },
+      {
+        name: "Pixuri",
+        body: "Serii pentru târg, recepție sau kit de bun venit. Gravură sau print, după material.",
+      },
+      {
+        name: "Notebook-uri și agende",
+        body: "Coperți personalizate pentru echipe, clienți sau conferințe.",
+      },
+      {
+        name: "Brelocuri",
+        body: "Mici, ținute în buzunar. Utile când campania trebuie să rămână la îndemână.",
+      },
+      {
+        name: "Tricouri, veste, geci",
+        body: "Pentru echipe, evenimente și uniforme lejere. Personalizare pe textil.",
+      },
     ],
   },
   {
     slug: "cadouri-personalizate",
     title: "Cadouri personalizate",
     kicker: "Pentru oameni, nu doar pentru brand",
-    summary: "Căni, magneți, ardezie, ceasuri. Cadoul de firmă sau de eveniment, făcut pe comandă.",
+    summary:
+      "Căni, magneți, ardezie, puzzle, perne. Cadoul de firmă sau de eveniment, făcut pe comandă.",
     image: "/media/cards-macro.jpg",
     imageAlt: "Tipar pe carton, cerneluri cyan și magenta",
     items: [
-      { name: "Căni", body: "Pentru birou sau pentru un eveniment. Un obiect care se folosește, nu se aruncă în sertar." },
-      { name: "Magneți", body: "Mici, de frigider sau de promoție. Buni când mesajul trebuie să rămână la vedere." },
-      { name: "Pietre de ardezie", body: "Suport mai greu, mai puțin „plastic”. Pentru cadouri care trebuie să se simtă solide." },
-      { name: "Ceasuri", body: "Personalizate pentru aniversări de firmă sau cadouri către parteneri." },
-      { name: "Tricouri", body: "Și în zona de cadou, nu doar de uniformă: echipe, nunți, echipe de proiect." },
+      {
+        name: "Căni",
+        body: "Pentru birou sau pentru un eveniment. Un obiect care se folosește, nu se aruncă în sertar.",
+      },
+      {
+        name: "Magneți",
+        body: "Mici, de frigider sau de promoție. Buni când mesajul trebuie să rămână la vedere.",
+      },
+      {
+        name: "Pietre de ardezie",
+        body: "Suport mai greu, mai puțin „plastic”. Pentru cadouri care trebuie să se simtă solide.",
+      },
+      {
+        name: "Ceasuri",
+        body: "Personalizate pentru aniversări de firmă sau cadouri către parteneri.",
+      },
+      {
+        name: "Tricouri",
+        body: "Și în zona de cadou, nu doar de uniformă: echipe, nunți, echipe de proiect.",
+      },
     ],
   },
   {
@@ -155,17 +184,26 @@ export const services: Service[] = [
     image: "https://i.imgur.com/NyO5SCm.png",
     imageAlt: "Roll-up, people stopper, casete luminoase, litere volumetrice și stand de târg",
     items: [
-      { name: "Roll-up", body: "Se deschide în câteva minute. Pentru prezentări, recepție, colț de târg." },
+      {
+        name: "Roll-up",
+        body: "Se deschide în câteva minute. Pentru prezentări, recepție, colț de târg.",
+      },
       {
         name: "People stopper",
         body: "Stand de podea care oprește privirea pe culoar sau la intrare. Compact, mobil, ușor de mutat.",
       },
-      { name: "Casete și lightbox", body: "Față iluminată, când mesajul trebuie să se vadă și seara." },
+      {
+        name: "Casete și lightbox",
+        body: "Față iluminată, când mesajul trebuie să se vadă și seara.",
+      },
       {
         name: "Litere volumetrice",
         body: "Pentru firmă, recepție sau eveniment. Se văd din unghi, nu doar din față.",
       },
-      { name: "Display de interior", body: "Panouri și sisteme pentru spații în care bannerul de stradă ar fi prea brut." },
+      {
+        name: "Display de interior",
+        body: "Panouri și sisteme pentru spații în care bannerul de stradă ar fi prea brut.",
+      },
     ],
   },
   {
@@ -173,7 +211,7 @@ export const services: Service[] = [
     title: "Invitații și afișe de eveniment",
     kicker: "Hârtie de ocazie",
     summary:
-      "Invitații de nuntă sau botez care se țin în mână înainte de eveniment, și afișe în aceeași familie vizuală.",
+      "Invitații de nuntă sau botez care se țin în mână înainte de eveniment, plicuri de bani și afișe în aceeași familie vizuală.",
     image: "https://i.imgur.com/d34Sipl.jpeg",
     imageAlt: "Invitații de nuntă și botez, cu afiș de bun venit",
     items: [
@@ -191,19 +229,27 @@ export const services: Service[] = [
     slug: "gravura-laser",
     title: "Gravură laser",
     kicker: "În material, nu doar pe el",
-    summary: "Gravăm logo-ul sau un desen în lemn, piele și obiecte promo. Rămâne și după ce cerneala s-ar șterge.",
+    summary:
+      "Gravăm logo-ul sau un desen în lemn, piele și obiecte promo. Rămâne și după ce cerneala s-ar șterge.",
     image: "/media/laser.jpg",
     imageAlt: "Cap de laser gravat pe lemn",
     items: [
-      { name: "Lemn și piele", body: "Plăcuțe, coperți, obiecte de birou. Fișierul curat contează mai mult decât dimensiunea." },
-      { name: "Obiecte promo", body: "Pixuri metalice, brelocuri, plăcuțe de premiu. Serii mici, fără clișeu." },
+      {
+        name: "Lemn și piele",
+        body: "Plăcuțe, coperți, obiecte de birou. Fișierul curat contează mai mult decât dimensiunea.",
+      },
+      {
+        name: "Obiecte promo",
+        body: "Pixuri metalice, brelocuri, plăcuțe de premiu. Serii mici, fără clișeu.",
+      },
     ],
   },
   {
     slug: "cabina-foto",
     title: "Cabină foto",
     kicker: "Magia din cutie",
-    summary: "Cabină pentru nunți, botezuri și petreceri de firmă. Oamenii pleacă cu o poză, nu doar cu o amintire.",
+    summary:
+      "Cabină pentru nunți, botezuri și petreceri de firmă. Oamenii pleacă cu o poză, nu doar cu o amintire.",
     image: "/media/gifts.jpg",
     imageAlt: "Recuzită de cabină foto pentru nunți și botezuri",
     items: [
@@ -218,9 +264,23 @@ export const services: Service[] = [
 
 export const departments = [
   { title: "Design", points: ["Logo și siglă", "Invitații", "Afișe și flyere", "Reviste"] },
-  { title: "Grafică", points: ["Prelucrare de imagini", "Redimensionare", "Calibrare de culori", "Efecte și focalizare"] },
-  { title: "Tipografie", points: ["Legătorie", "Multiplicare", "Print foto", "Laminare și plastifiere"] },
-  { title: "Editură", points: ["Tipar digital", "Multiplicare rapidă", "Broșuri", "Reviste și afișe"] },
+  {
+    title: "Grafică",
+    points: [
+      "Prelucrare de imagini",
+      "Redimensionare",
+      "Calibrare de culori",
+      "Efecte și focalizare",
+    ],
+  },
+  {
+    title: "Tipografie",
+    points: ["Legătorie", "Multiplicare", "Print foto", "Laminare și plastifiere"],
+  },
+  {
+    title: "Editură",
+    points: ["Tipar digital", "Multiplicare rapidă", "Broșuri", "Reviste și afișe"],
+  },
 ] as const;
 
 export const steps = [
@@ -247,10 +307,26 @@ export const steps = [
 ] as const;
 
 export const finishes = [
-  { id: "digital", name: "Digital", note: "Serii mici și medii. Gata repede, color sau alb-negru, fără plăci." },
-  { id: "offset", name: "Offset", note: "Când tirajul crește, costul pe bucată coboară. Potrivit pentru cataloage și campanii lungi." },
-  { id: "mat", name: "Mat", note: "Plastifiere mată: mai puțină amprentă, ton mai liniștit. Preferatul pentru mape." },
-  { id: "lucios", name: "Lucios", note: "Culorile tari ies în față. Bun pe coperți și pe afișe care trebuie văzute de departe." },
+  {
+    id: "digital",
+    name: "Digital",
+    note: "Serii mici și medii. Gata repede, color sau alb-negru, fără plăci.",
+  },
+  {
+    id: "offset",
+    name: "Offset",
+    note: "Când tirajul crește, costul pe bucată coboară. Potrivit pentru cataloage și campanii lungi.",
+  },
+  {
+    id: "mat",
+    name: "Mat",
+    note: "Plastifiere mată: mai puțină amprentă, ton mai liniștit. Preferatul pentru mape.",
+  },
+  {
+    id: "lucios",
+    name: "Lucios",
+    note: "Culorile tari ies în față. Bun pe coperți și pe afișe care trebuie văzute de departe.",
+  },
 ] as const;
 
 export const inkTones = ["tone-cyan", "tone-magenta", "tone-yellow", "tone-ink"] as const;
