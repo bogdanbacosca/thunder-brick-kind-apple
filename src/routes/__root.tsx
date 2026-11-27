@@ -20,6 +20,7 @@ export const Route = createRootRoute({
       { name: "theme-color", content: "#f3efe6" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -53,18 +54,17 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname });
-
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
     <MotionConfig reducedMotion="user">
       <Header />
       <AnimatePresence mode="wait">
         <motion.div
           key={pathname}
-          initial={{ y: 10 }}
-          animate={{ y: 0 }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.2 }}
         >
           <Outlet />
         </motion.div>
@@ -76,13 +76,12 @@ function RootComponent() {
 
 function NotFound() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl flex-col justify-center px-5 py-20">
-      <p className="text-xs tracking-widest text-cyan uppercase">404</p>
-      <h1 className="mt-3 font-display text-5xl text-ink">Pagina nu e în tipar.</h1>
-      <p className="mt-4 max-w-md text-ink-soft">Linkul nu duce nicăieri pe site. Înapoi la atelier.</p>
-      <a href="/" className="tap mt-8 w-fit rounded-full bg-ink px-5 py-3 text-sm text-paper">
-        Acasă
-      </a>
+    <main className="mx-auto max-w-6xl px-5 py-24 text-center">
+      <p className="text-xs tracking-widest text-magenta uppercase">404</p>
+      <h1 className="mt-3 font-display text-4xl">Pagina nu există</h1>
+      <Link to="/" className="mt-8 inline-flex rounded-full bg-ink px-6 py-3 text-sm text-paper">
+        Înapoi acasă
+      </Link>
     </main>
   );
 }

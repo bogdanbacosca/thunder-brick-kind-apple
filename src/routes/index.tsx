@@ -61,13 +61,13 @@ function Home() {
           >
             <div className="rounded-3xl bg-magenta p-2">
               <img
-                src="/media/still-life.jpg"
-                alt="Coli tipărite, cerneluri cyan și magenta și o lupă pe masa de lucru"
+                src="https://i.imgur.com/A4CsHgl.jpeg"
+                alt="Vitrina Color Print Roman — tipografie și copycenter pe Str. Roman Mușat"
                 className="aspect-[16/10] w-full rounded-2xl object-cover"
               />
             </div>
             <figcaption className="mt-3 flex items-center justify-between text-xs tracking-widest uppercase">
-              <span>Cerneală pe hârtie</span>
+              <span>Str. Roman Mușat · Roman</span>
               <span className="flex gap-2">
                 <i className="size-3 rounded-full bg-cyan" />
                 <i className="size-3 rounded-full bg-magenta" />
@@ -99,24 +99,28 @@ function Home() {
             <p className="text-xs tracking-widest text-magenta uppercase">Servicii</p>
             <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">Ce iese din atelier</h2>
           </div>
-          <Link to="/servicii" className="text-sm text-ink underline-offset-4 hover:underline">
+          <Link to="/servicii" className="text-sm font-medium text-magenta">
             Tot catalogul
           </Link>
         </div>
-        <ul className="mt-10 grid gap-4 md:grid-cols-2">
+        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((item, index) => (
             <li key={item.slug}>
               <Rise delay={index * 0.04}>
                 <Link
                   to="/servicii/$slug"
                   params={{ slug: item.slug }}
-                  className="group grid overflow-hidden rounded-3xl bg-surface sm:grid-cols-5"
+                  className="group flex h-full flex-col overflow-hidden rounded-3xl border border-line bg-surface"
                 >
-                  <div className={`${toneClass(item.slug)} sm:col-span-2`}>
-                    <img src={item.image} alt="" className="aspect-[4/3] h-full w-full object-cover sm:aspect-auto" />
+                  <div className={`${toneClass(item.slug)} aspect-[16/10] overflow-hidden`}>
+                    <img
+                      src={item.image}
+                      alt={item.imageAlt}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
                   </div>
-                  <div className="flex flex-col justify-between p-5 sm:col-span-3">
-                    <div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <div className="flex-1">
                       <p className={`${toneClass(item.slug)} inline-block rounded-full px-3 py-1 text-xs tracking-widest uppercase`}>
                         {item.kicker}
                       </p>
