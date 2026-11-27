@@ -152,7 +152,7 @@ export const services: Service[] = [
     kicker: "Standul care se montează dimineața",
     summary:
       "Roll-up, people stopper, casete luminoase, litere volumetrice și structuri pentru târg, recepție sau magazin. Grafica se schimbă, sistemul rămâne.",
-    image: "/media/sisteme-afisare.jpg",
+    image: "https://i.imgur.com/NyO5SCm.png",
     imageAlt: "Roll-up, people stopper, casete luminoase, litere volumetrice și stand de târg",
     items: [
       { name: "Roll-up", body: "Se deschide în câteva minute. Pentru prezentări, recepție, colț de târg." },
@@ -174,7 +174,7 @@ export const services: Service[] = [
     kicker: "Hârtie de ocazie",
     summary:
       "Invitații de nuntă sau botez care se țin în mână înainte de eveniment, și afișe în aceeași familie vizuală.",
-    image: "/media/invitatii-nunta-botez.jpg",
+    image: "https://i.imgur.com/d34Sipl.jpeg",
     imageAlt: "Invitații de nuntă și botez, cu afiș de bun venit",
     items: [
       {
