@@ -32,6 +32,13 @@ function ContactPage() {
         <p className="mt-4 text-ink-soft">
           Sună, treci pe la magazin sau lasă detaliile lucrării. Răspundem în program.
         </p>
+        <figure className="mt-8 rounded-3xl overflow-hidden border border-line">
+          <img
+            src="/media/colaborare.jpg"
+            alt="Echipă Color Print Roman — strângere de mâini după închiderea unei colaborări"
+            className="aspect-[16/9] w-full h-auto block object-cover"
+          />
+        </figure>
         <ul className="mt-8 grid gap-5 text-sm">
           <li className="flex gap-3">
             <MapPin className="mt-0.5 size-5 shrink-0 text-cyan" />
