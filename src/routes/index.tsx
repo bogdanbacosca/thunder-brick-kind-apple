@@ -30,7 +30,11 @@ function Home() {
           </div>
           <motion.figure initial={{ y: 20 }} animate={{ y: 0 }} transition={{ duration: 0.6, delay: 0.08 }} className="lg:col-span-6">
             <div className="rounded-3xl bg-magenta p-2">
-              <img src="/media/hero-storefront.svg" alt="Vitrina Color Print Roman — tipografie și copycenter pe Str. Roman Mușat" className="aspect-[16/10] w-full rounded-2xl object-cover" />
+              <img
+                src="https://i.imgur.com/wjciosp.jpeg"
+                alt="Vitrina Color Print Roman — tipografie și copycenter pe Str. Roman Mușat"
+                className="aspect-[16/10] w-full rounded-2xl object-cover"
+              />
             </div>
             <figcaption className="mt-3 flex items-center justify-between text-xs tracking-widest uppercase">
               <span>Str. Roman Mușat · Roman</span>
