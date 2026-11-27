@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #fff6ea;
+  --color-paper-deep: #ffe7c2;
+  --color-ink: #141210;
+  --color-ink-soft: #3a332c;
+  --color-muted: #6d645b;
+  --color-line: #f0d7b0;
+  --color-magenta: #e1066b;
+  --color-yellow: #ffd000;
+  --color-surface: #fffdf8;
+  --color-cyan: #00b5d4;
+  --color-bg: #fff6ea;
+  --color-fg: #141210;
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Outfit", "Avenir Next", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 420;
+    line-height: 1.55;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-magenta);
+    color: var(--color-surface);
+  }
+}
+
+.tone-cyan {
+  background: var(--color-cyan);
+  color: var(--color-ink);
+}
+
+.tone-magenta {
+  background: var(--color-magenta);
+  color: var(--color-surface);
+}
+
+.tone-yellow {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+}
+
+.tone-ink {
+  background: var(--color-ink);
+  color: var(--color-surface);
+}
+
+.tap {
+  transition: scale 150ms ease-out;
+}
+
+.tap:active:not(:disabled) {
+  scale: 0.96;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .tap:active:not(:disabled) {
+    scale: 1;
+  }
+}
