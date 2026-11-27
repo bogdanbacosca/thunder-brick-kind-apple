@@ -49,13 +49,9 @@ export function Header() {
         </div>
       </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 border-b border-line px-5 py-3">
-        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <Mark className="size-9 text-magenta" />
-          <span className="leading-none">
-            <span className="block font-display text-xl font-semibold tracking-tight">
-              <span className="text-cyan">Color</span> <span className="text-magenta">Print</span>
-            </span>
-            <span className="block text-xs tracking-widest text-ink uppercase">Roman</span>
+        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)} aria-label="Color Print Roman">
+          <span className="inline-flex items-center rounded-lg bg-ink px-2.5 py-1.5">
+            <Mark className="h-8 w-auto max-w-[160px] object-contain object-left" />
           </span>
         </Link>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Principal">
@@ -176,8 +172,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <Mark className="size-8 text-yellow" />
-            <p className="font-display text-2xl">Color Print Roman</p>
+            <Mark className="h-10 w-auto max-w-[200px] object-contain object-left" />
           </div>
           <p className="mt-4 max-w-sm text-paper/80">{shop.tagline} Copycenter, tipar și personalizare în Roman.</p>
         </div>
