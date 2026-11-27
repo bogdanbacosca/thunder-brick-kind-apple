@@ -150,24 +150,33 @@ export const services: Service[] = [
     slug: "sisteme-de-afisare",
     title: "Sisteme de afișare",
     kicker: "Standul care se montează dimineața",
-    summary: "Roll-up, casete și structuri pentru târg, recepție sau magazin. Grafica se schimbă, sistemul rămâne.",
-    image: "/media/still-life.jpg",
-    imageAlt: "Coli tipărite și cerneluri pe masa de lucru",
+    summary:
+      "Roll-up, people stopper, casete luminoase, litere volumetrice și structuri pentru târg, recepție sau magazin. Grafica se schimbă, sistemul rămâne.",
+    image: "https://i.imgur.com/NyO5SCm.png",
+    imageAlt: "Roll-up, people stopper, casete luminoase, litere volumetrice și stand de târg",
     items: [
       { name: "Roll-up", body: "Se deschide în câteva minute. Pentru prezentări, recepție, colț de târg." },
+      {
+        name: "People stopper",
+        body: "Stand de podea care oprește privirea pe culoar sau la intrare. Compact, mobil, ușor de mutat.",
+      },
       { name: "Casete și lightbox", body: "Față iluminată, când mesajul trebuie să se vadă și seara." },
+      {
+        name: "Litere volumetrice",
+        body: "Pentru firmă, recepție sau eveniment. Se văd din unghi, nu doar din față.",
+      },
       { name: "Display de interior", body: "Panouri și sisteme pentru spații în care bannerul de stradă ar fi prea brut." },
     ],
   },
   {
     slug: "litere-si-invitatii",
-    title: "Litere volumetrice și invitații",
-    kicker: "Semnalistică și hârtie de ocazie",
-    summary: "Litere care ies din perete, și invitații de nuntă sau botez care se țin în mână înainte de eveniment.",
-    image: "/media/gifts.jpg",
-    imageAlt: "Grafică pentru cabină foto, nuntă și botez",
+    title: "Invitații și afișe de eveniment",
+    kicker: "Hârtie de ocazie",
+    summary:
+      "Invitații de nuntă sau botez care se țin în mână înainte de eveniment, și afișe în aceeași familie vizuală.",
+    image: "https://i.imgur.com/d34Sipl.jpeg",
+    imageAlt: "Invitații de nuntă și botez, cu afiș de bun venit",
     items: [
-      { name: "Litere volumetrice", body: "Pentru firmă, recepție sau eveniment. Se văd din unghi, nu doar din față." },
       {
         name: "Invitații de nuntă și botez",
         body: "Hârtie, pliere, personalizare. Spune-ne numărul și termenul — restul îl stabilim pe mostră.",
