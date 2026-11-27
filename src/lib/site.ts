@@ -1,3 +1,5 @@
+import { produsePromotionale, cadouriPersonalizate, sistemeDeAfisare, invitatiiNuntaBotez } from '@/lib/service-images';
+
 export const shop = {
   name: "Color Print Roman",
   tagline: "Aducem culoare în viața ta.",
@@ -122,7 +124,7 @@ export const services: Service[] = [
     title: "Produse promoționale",
     kicker: "Obiecte care circulă",
     summary: "Pixul, agenda și tricoul duc numele firmei mai departe decât un flyer lăsat pe masă.",
-    image: "https://i.imgur.com/7pCi7N3.jpeg",
+    image: produsePromotionale,
     imageAlt: "Agendă, pix și tricou personalizate cu logo, plus flyer",
     items: [
       { name: "Pixuri", body: "Serii pentru târg, recepție sau kit de bun venit. Gravură sau print, după material." },
@@ -136,7 +138,7 @@ export const services: Service[] = [
     title: "Cadouri personalizate",
     kicker: "Pentru oameni, nu doar pentru brand",
     summary: "Căni, magneți, ardezie, ceasuri. Cadoul de firmă sau de eveniment, făcut pe comandă.",
-    image: "https://i.imgur.com/DivT93v.jpeg",
+    image: cadouriPersonalizate,
     imageAlt: "Căni, piatră de ardezie, puzzle, magneți și insigne personalizate",
     items: [
       { name: "Căni", body: "Pentru birou sau pentru un eveniment. Un obiect care se folosește, nu se aruncă în sertar." },
@@ -152,7 +154,7 @@ export const services: Service[] = [
     kicker: "Standul care se montează dimineața",
     summary:
       "Roll-up, people stopper, casete luminoase, litere volumetrice și structuri pentru târg, recepție sau magazin. Grafica se schimbă, sistemul rămâne.",
-    image: "https://i.imgur.com/NyO5SCm.png",
+    image: sistemeDeAfisare,
     imageAlt: "Roll-up, people stopper, casete luminoase, litere volumetrice și stand de târg",
     items: [
       { name: "Roll-up", body: "Se deschide în câteva minute. Pentru prezentări, recepție, colț de târg." },
@@ -174,7 +176,7 @@ export const services: Service[] = [
     kicker: "Hârtie de ocazie",
     summary:
       "Invitații de nuntă sau botez care se țin în mână înainte de eveniment, și afișe în aceeași familie vizuală.",
-    image: "https://i.imgur.com/d34Sipl.jpeg",
+    image: invitatiiNuntaBotez,
     imageAlt: "Invitații de nuntă și botez, cu afiș de bun venit",
     items: [
       {
