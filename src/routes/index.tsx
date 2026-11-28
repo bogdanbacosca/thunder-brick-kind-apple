@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { ChromaShift } from "@/components/chroma-shift";
 import { Rise } from "@/components/rise";
+import { TextReveal } from "@/components/text-reveal";
 import { departments, inkTones, services, shop, steps, toneClass } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
@@ -9,15 +11,25 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { scrollYProgress } = useScroll();
+  const heroColor = useTransform(
+    scrollYProgress,
+    [0, 0.35, 0.7, 1],
+    ["rgb(20, 18, 16)", "rgb(225, 6, 107)", "rgb(0, 181, 212)", "rgb(20, 18, 16)"]
+  );
+
   return (
     <main>
+      <ChromaShift />
       <section className="bg-yellow text-ink">
         <div className="mx-auto grid max-w-6xl items-end gap-10 px-5 py-12 lg:grid-cols-12 lg:py-16">
           <div className="lg:col-span-6">
             <motion.p initial={{ y: 12 }} animate={{ y: 0 }} transition={{ duration: 0.45 }} className="text-xs tracking-widest uppercase">
               Tipografie · Roman, Neamț
             </motion.p>
-            <motion.h1 initial={{ y: 16 }} animate={{ y: 0 }} transition={{ duration: 0.55, delay: 0.05 }} className="mt-4 font-display text-5xl leading-none font-medium text-balance sm:text-7xl">
+            <motion.h1 initial={{ y: 16 }} animate={{ y: 0 }} transition={{ duration: 0.55, delay: 0.05 }} className="mt-4 font-display text-5xl leading-none font-medium text-balance sm:text-7xl"
+              style={{ color: heroColor }}
+            >
               Aducem <span className="text-magenta">culoare</span> în viața ta.
             </motion.h1>
             <motion.p initial={{ y: 16 }} animate={{ y: 0 }} transition={{ duration: 0.55, delay: 0.12 }} className="mt-6 max-w-md text-lg">
@@ -65,7 +77,9 @@ function Home() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs tracking-widest text-magenta uppercase">Servicii</p>
-            <h2 className="mt-2 font-display text-4xl text-ink sm:text-5xl">Ce iese din atelier</h2>
+            <TextReveal tag="h2" className="mt-2 font-display text-4xl text-ink sm:text-5xl">
+              Ce iese din atelier
+            </TextReveal>
           </div>
           <Link to="/servicii" className="text-sm font-medium text-magenta">Tot catalogul</Link>
         </div>
@@ -100,7 +114,9 @@ function Home() {
           {steps.map((step, index) => (
             <article key={step.n} className={`${inkTones[index]} rounded-3xl p-5`}>
               <p className="font-display text-3xl">{step.n}</p>
-              <h3 className="mt-3 font-display text-2xl">{step.title}</h3>
+              <TextReveal tag="h3" className="mt-3 font-display text-2xl" delay={index * 0.05}>
+                {step.title}
+              </TextReveal>
               <p className="mt-2 text-sm">{step.body}</p>
             </article>
           ))}
@@ -112,7 +128,9 @@ function Home() {
           <img src="/media/cards-macro.jpg" alt="Cărți de vizită cu forme geometrice și cerneală proaspătă" className="aspect-[4/3] w-full rounded-3xl object-cover" />
           <div>
             <p className="text-xs tracking-widest text-yellow uppercase">În magazin</p>
-            <h2 className="mt-3 font-display text-4xl sm:text-5xl">Hai să colaborăm.</h2>
+            <TextReveal tag="h2" className="mt-3 font-display text-4xl sm:text-5xl">
+              Hai să colaborăm.
+            </TextReveal>
             <p className="mt-4 text-surface/90">{shop.street}, {shop.city}. {shop.landmark}. Luni–vineri până la 18:00, sâmbăta până la 13:00.</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href={`tel:${shop.phoneTel}`} className="tap rounded-full bg-yellow px-6 py-3 text-sm font-medium text-ink">{shop.phoneDisplay}</a>
