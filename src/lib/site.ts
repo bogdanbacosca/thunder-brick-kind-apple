@@ -1,9 +1,10 @@
 export const shop = {
   name: "Color Print Roman",
   tagline: "Aducem culoare în viața ta.",
-  phoneDisplay: "0743 178 667",
-  phoneTel: "+40743178667",
+  phoneDisplay: "0753 581 170",
+  phoneTel: "+40753581170",
   email: "colorprint_roman@yahoo.com",
+  facebook: "https://www.facebook.com/colorprintroman",
   street: "Str. Roman Mușat nr. 21",
   city: "Roman, jud. Neamț",
   landmark: "Lângă Biblioteca Municipală și Farmacia 32",
