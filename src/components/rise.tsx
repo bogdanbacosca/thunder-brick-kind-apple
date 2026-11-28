@@ -18,10 +18,10 @@ export function Rise({
   return (
     <motion.div
       className={className}
-      initial={{ y: 18 }}
-      whileInView={{ y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 0.55, delay, ease }}
+      initial={{ opacity: 0, y: 22, filter: "blur(4px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+      transition={{ duration: 0.65, delay, ease }}
     >
       {children}
     </motion.div>

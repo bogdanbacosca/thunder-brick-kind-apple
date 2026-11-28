@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Rise } from "@/components/rise";
+import { TextReveal } from "@/components/text-reveal";
 import { inkTones, services, toneClass } from "@/lib/site";
 
 export const Route = createFileRoute("/servicii/")({
@@ -21,9 +23,9 @@ function ServicesIndex() {
       <section className="bg-magenta text-surface">
         <div className="mx-auto max-w-6xl px-5 py-14">
           <p className="text-xs tracking-widest text-yellow uppercase">Servicii</p>
-          <h1 className="mt-3 max-w-2xl font-display text-5xl leading-none sm:text-6xl">
+          <TextReveal tag="h1" className="mt-3 max-w-2xl font-display text-5xl leading-none sm:text-6xl" stagger={0.04}>
             De la o carte de vizită la fațada clădirii.
-          </h1>
+          </TextReveal>
           <p className="mt-5 max-w-xl text-lg text-surface/90">
             Alege piesa. Pe pagina ei sunt materialele și finisajele cu care lucrăm în Roman.
           </p>
@@ -32,11 +34,12 @@ function ServicesIndex() {
       <ul className="mx-auto grid max-w-6xl gap-5 px-5 py-12">
         {services.map((item, index) => (
           <li key={item.slug}>
-            <Link
-              to="/servicii/$slug"
-              params={{ slug: item.slug }}
-              className="grid items-center gap-5 rounded-3xl bg-surface p-3 sm:grid-cols-[180px_1fr_auto] sm:p-4"
-            >
+            <Rise delay={index * 0.04}>
+              <Link
+                to="/servicii/$slug"
+                params={{ slug: item.slug }}
+                className="grid items-center gap-5 rounded-3xl bg-surface p-3 sm:grid-cols-[180px_1fr_auto] sm:p-4"
+              >
               <div className={`${toneClass(item.slug)} rounded-2xl p-1`}>
                 <img src={item.image} alt="" className="aspect-[4/3] w-full rounded-xl object-cover" />
               </div>
@@ -48,7 +51,8 @@ function ServicesIndex() {
                 <p className="mt-2 max-w-xl text-sm text-ink-soft">{item.summary}</p>
               </div>
               <span className="hidden pr-3 text-sm font-medium text-magenta sm:inline">Deschide</span>
-            </Link>
+              </Link>
+            </Rise>
           </li>
         ))}
       </ul>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { Menu, Phone, X } from "lucide-react";
 import { Mark } from "@/components/mark";
 import { services, shop } from "@/lib/site";
@@ -28,13 +28,38 @@ export function CmykBar() {
   );
 }
 
+function ScrollRule() {
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const background = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [
+    "#00b5d4",
+    "#e1066b",
+    "#ffd000",
+    "#141210",
+    "#e1066b",
+  ]);
+
+  if (reduce) return null;
+
+  return (
+    <motion.div
+      aria-hidden
+      style={{ scaleX, background, transformOrigin: "0% 50%" }}
+      className="pointer-events-none fixed top-0 right-0 left-0 z-50 h-1"
+    />
+  );
+}
+
 export function Header() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur-md">
+    <>
+      <ScrollRule />
+      <header className="sticky top-0 z-40 bg-paper/95 backdrop-blur-md">
       <CmykBar />
       <div className="bg-cyan text-ink">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-2 text-sm">
@@ -162,6 +187,7 @@ export function Header() {
         ) : null}
       </AnimatePresence>
     </header>
+    </>
   );
 }
 

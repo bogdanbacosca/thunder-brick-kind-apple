@@ -1,46 +1,40 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform, useMotionTemplate } from "motion/react";
 
 /**
- * ChromaShift
- *
- * A subtle, full-bleed background layer that cycles the brand's CMYK-ish
- * ink tones as the user scrolls down the page. It sits behind the content
- * (z-index -1, pointer-events none) so it never blocks interaction, and it
- * respects prefers-reduced-motion by rendering nothing.
- *
- * Colors: magenta → cyan → yellow → ink → back to magenta.
+ * Full-viewport paper tint. Two CMYK blooms drift and trade color with
+ * scroll, sitting behind the page so solid sections stay readable.
  */
-const SHIFT_STOPS = [
-  [0, "rgba(225, 6, 107, 0.09)"],
-  [0.24, "rgba(0, 181, 212, 0.09)"],
-  [0.48, "rgba(255, 208, 0, 0.09)"],
-  [0.72, "rgba(20, 18, 16, 0.07)"],
-  [1, "rgba(225, 6, 107, 0.09)"],
-] as const;
-
 export function ChromaShift() {
   const reduce = useReducedMotion();
-  if (reduce) return null;
-
   const { scrollYProgress } = useScroll();
 
-  const background = useTransform(
-    scrollYProgress,
-    SHIFT_STOPS.map(([t]) => t),
-    SHIFT_STOPS.map(([, color]) => color)
-  );
+  const bloomA = useTransform(scrollYProgress, [0, 0.28, 0.55, 0.8, 1], [
+    "rgba(0, 181, 212, 0.55)",
+    "rgba(225, 6, 107, 0.48)",
+    "rgba(255, 208, 0, 0.62)",
+    "rgba(225, 6, 107, 0.42)",
+    "rgba(0, 181, 212, 0.5)",
+  ]);
+  const bloomB = useTransform(scrollYProgress, [0, 0.35, 0.68, 1], [
+    "rgba(225, 6, 107, 0.38)",
+    "rgba(255, 208, 0, 0.5)",
+    "rgba(0, 181, 212, 0.46)",
+    "rgba(255, 208, 0, 0.4)",
+  ]);
+  const xA = useTransform(scrollYProgress, [0, 1], ["12%", "32%"]);
+  const yA = useTransform(scrollYProgress, [0, 1], ["0%", "38%"]);
+  const xB = useTransform(scrollYProgress, [0, 1], ["90%", "58%"]);
+  const yB = useTransform(scrollYProgress, [0, 1], ["92%", "48%"]);
+
+  const background = useMotionTemplate`radial-gradient(ellipse 72% 56% at ${xA} ${yA}, ${bloomA}, transparent 64%), radial-gradient(ellipse 64% 52% at ${xB} ${yB}, ${bloomB}, transparent 62%), #fff6ea`;
+
+  if (reduce) return null;
 
   return (
     <motion.div
-      style={{
-        position: "fixed",
-        inset: 0,
-        width: "100vw",
-        height: "100dvh",
-        background,
-        pointerEvents: "none",
-        zIndex: -1,
-      }}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-0"
+      style={{ background }}
     />
   );
 }

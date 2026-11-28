@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Rise } from "@/components/rise";
+import { TextReveal } from "@/components/text-reveal";
 import { departments, inkTones, shop } from "@/lib/site";
 
 export const Route = createFileRoute("/despre")({
@@ -20,9 +22,9 @@ function About() {
       <section className="bg-cyan text-ink">
         <div className="mx-auto max-w-6xl px-5 py-14">
           <p className="text-xs tracking-widest uppercase">Despre noi</p>
-          <h1 className="mt-3 max-w-3xl font-display text-5xl leading-none sm:text-6xl">
+          <TextReveal tag="h1" className="mt-3 max-w-3xl font-display text-5xl leading-none sm:text-6xl" stagger={0.04}>
             Un atelier de tipar în Roman, nu un catalog fără adresă.
-          </h1>
+          </TextReveal>
           <p className="mt-6 max-w-2xl text-lg">
             Oferim servicii diverse, făcute cu grijă: design, grafică, tipar digital și offset, finisare și
             obiecte personalizate. Misiunea e calitatea lucrării care pleacă din mână, nu lista cea mai lungă.
@@ -30,12 +32,17 @@ function About() {
         </div>
       </section>
       <section className="mx-auto grid max-w-6xl gap-6 px-5 pb-16 lg:grid-cols-5">
-        <img
-          src="/media/still-life.jpg"
-          alt="Masa de lucru cu coli și cerneluri"
-          className="aspect-[4/3] w-full rounded-3xl object-cover lg:col-span-3"
-        />
-        <div className="flex flex-col justify-between rounded-3xl bg-magenta p-6 text-surface lg:col-span-2">
+        <Rise className="lg:col-span-3">
+          <img
+            src="/media/still-life.jpg"
+            alt="Masa de lucru cu coli și cerneluri"
+            className="aspect-[4/3] w-full rounded-3xl object-cover"
+          />
+        </Rise>
+        <Rise
+          className="flex h-full flex-col justify-between rounded-3xl bg-magenta p-6 text-surface lg:col-span-2"
+          delay={0.08}
+        >
           <div>
             <p className="text-xs tracking-widest text-yellow uppercase">Unde ne găsești</p>
             <p className="mt-4 font-display text-3xl">{shop.street}</p>
@@ -50,20 +57,24 @@ function About() {
               </li>
             ))}
           </ul>
-        </div>
+        </Rise>
       </section>
       <section className="border-t border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="font-display text-4xl text-ink">Patru mese, același atelier</h2>
+          <TextReveal tag="h2" className="font-display text-4xl text-ink">
+            Patru mese, același atelier
+          </TextReveal>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {departments.map((dept, index) => (
-              <li key={dept.title} className={`${inkTones[index]} rounded-3xl p-5`}>
-                <h3 className="font-display text-2xl">{dept.title}</h3>
-                <ul className="mt-3 grid gap-1 text-sm text-ink-soft">
-                  {dept.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
+              <li key={dept.title}>
+                <Rise className={`${inkTones[index]} h-full rounded-3xl p-5`} delay={index * 0.05}>
+                  <h3 className="font-display text-2xl">{dept.title}</h3>
+                  <ul className="mt-3 grid gap-1 text-sm text-ink-soft">
+                    {dept.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </Rise>
               </li>
             ))}
           </ul>

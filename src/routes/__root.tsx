@@ -10,6 +10,7 @@ import {
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { ChromaShift } from "@/components/chroma-shift";
 import { Footer, Header } from "@/components/shell";
 import appCss from "../styles.css?url";
 
@@ -64,19 +65,22 @@ function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   return (
     <MotionConfig reducedMotion="user">
-      <Header />
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={pathname}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Outlet />
-        </motion.div>
-      </AnimatePresence>
-      <Footer />
+      <ChromaShift />
+      <div className="relative z-10">
+        <Header />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Outlet />
+          </motion.div>
+        </AnimatePresence>
+        <Footer />
+      </div>
     </MotionConfig>
   );
 }

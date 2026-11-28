@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { ChromaShift } from "@/components/chroma-shift";
+import { InkField } from "@/components/ink-field";
 import { Rise } from "@/components/rise";
 import { TextReveal } from "@/components/text-reveal";
 import { departments, inkTones, services, shop, steps, toneClass } from "@/lib/site";
@@ -10,50 +10,60 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const ease = [0.22, 1, 0.36, 1] as const;
+const heroWords = ["Aducem", "culoare", "în", "viața", "ta."] as const;
+
 function Home() {
+  const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const heroColor = useTransform(
-    scrollYProgress,
-    [0, 0.35, 0.7, 1],
-    ["rgb(20, 18, 16)", "rgb(225, 6, 107)", "rgb(0, 181, 212)", "rgb(20, 18, 16)"],
-  );
+  const heroBg = useTransform(scrollYProgress, [0, 0.14, 0.3], ["#ffd000", "#ffe7c2", "#d7f4f8"]);
+  const photoScale = useTransform(scrollYProgress, [0, 0.22], [1.08, 1]);
+  const accent = useTransform(scrollYProgress, [0, 0.12, 0.24, 0.36], ["#e1066b", "#0a5c6e", "#141210", "#e1066b"]);
 
   return (
     <main>
-      <ChromaShift />
-      <section className="bg-yellow text-ink">
+      <motion.section className="text-ink" style={{ background: reduce ? "#ffd000" : heroBg }}>
         <div className="mx-auto grid max-w-6xl items-end gap-10 px-5 py-12 lg:grid-cols-12 lg:py-16">
           <div className="lg:col-span-6">
             <motion.p
-              initial={{ y: 12 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.45 }}
-              className="text-xs tracking-widest uppercase"
+              initial={reduce ? false : { y: "110%", filter: "blur(4px)" }}
+              animate={reduce ? undefined : { y: "0%", filter: "blur(0px)" }}
+              transition={{ duration: 0.55, ease }}
+              className="overflow-hidden text-xs tracking-widest uppercase"
             >
               Tipografie · Roman, Neamț
             </motion.p>
-            <motion.h1
-              initial={{ y: 16 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.55, delay: 0.05 }}
-              className="mt-4 font-display text-5xl leading-none font-medium text-balance sm:text-7xl"
-              style={{ color: heroColor }}
-            >
-              Aducem <span className="text-magenta">culoare</span> în viața ta.
-            </motion.h1>
+            <h1 className="mt-4 font-display text-5xl leading-[0.92] font-medium text-balance sm:text-7xl">
+              {heroWords.map((word, index) => (
+                <span key={word}>
+                  <span className="inline-block overflow-hidden pb-[0.14em] -mb-[0.14em] align-bottom">
+                    <motion.span
+                      className={`inline-block ${word === "culoare" && reduce ? "text-magenta" : ""}`}
+                      style={word === "culoare" && !reduce ? { color: accent } : undefined}
+                      initial={reduce ? false : { y: "115%", filter: "blur(4px)" }}
+                      animate={reduce ? undefined : { y: "0%", filter: "blur(0px)" }}
+                      transition={{ duration: 0.72, delay: 0.05 + index * 0.055, ease }}
+                    >
+                      {word}
+                    </motion.span>
+                  </span>
+                  {index < heroWords.length - 1 ? " " : null}
+                </span>
+              ))}
+            </h1>
             <motion.p
-              initial={{ y: 16 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.55, delay: 0.12 }}
+              initial={reduce ? false : { y: 18, filter: "blur(4px)", opacity: 0 }}
+              animate={reduce ? undefined : { y: 0, filter: "blur(0px)", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.34, ease }}
               className="mt-6 max-w-md text-lg"
             >
               Copycenter, tipar digital și offset, print mare și obiecte personalizate. În Roman, pe
               Roman Mușat, lângă bibliotecă.
             </motion.p>
             <motion.div
-              initial={{ y: 16 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.55, delay: 0.18 }}
+              initial={reduce ? false : { y: 18, filter: "blur(4px)", opacity: 0 }}
+              animate={reduce ? undefined : { y: 0, filter: "blur(0px)", opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.44, ease }}
               className="mt-8 flex flex-wrap gap-3"
             >
               <Link
@@ -71,13 +81,14 @@ function Home() {
             </motion.div>
           </div>
           <motion.figure
-            initial={{ y: 20 }}
-            animate={{ y: 0 }}
-            transition={{ duration: 0.6, delay: 0.08 }}
+            initial={reduce ? false : { y: 24, filter: "blur(4px)", opacity: 0 }}
+            animate={reduce ? undefined : { y: 0, filter: "blur(0px)", opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.12, ease }}
             className="lg:col-span-6"
           >
-            <div className="rounded-3xl bg-magenta p-2">
-              <img
+            <div className="overflow-hidden rounded-3xl bg-magenta p-2">
+              <motion.img
+                style={{ scale: reduce ? 1 : photoScale }}
                 src="/media/storefront.jpeg"
                 alt="Vitrina Color Print Roman — tipografie și copycenter pe Str. Roman Mușat"
                 className="aspect-[16/10] w-full rounded-2xl object-cover"
@@ -93,22 +104,26 @@ function Home() {
             </figcaption>
           </motion.figure>
         </div>
-      </section>
+      </motion.section>
+
+      <InkTicker progress={scrollYProgress} reduce={!!reduce} />
 
       <section>
         <div className="mx-auto grid max-w-6xl sm:grid-cols-4">
           {departments.map((dept, index) => (
-            <div key={dept.title} className={`${inkTones[index]} px-5 py-6`}>
+            <Rise key={dept.title} className={`${inkTones[index]} h-full px-5 py-6`} delay={index * 0.06}>
               <p className="font-display text-2xl">{dept.title}</p>
               <ul className="mt-3 grid gap-1 text-sm">
                 {dept.points.map((point) => (
                   <li key={point}>{point}</li>
                 ))}
               </ul>
-            </div>
+            </Rise>
           ))}
         </div>
       </section>
+
+      <InkField />
 
       <section className="mx-auto max-w-6xl px-5 py-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
@@ -163,24 +178,26 @@ function Home() {
       <section className="px-5 pb-6">
         <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
-            <article key={step.n} className={`${inkTones[index]} rounded-3xl p-5`}>
+            <Rise key={step.n} className={`${inkTones[index]} rounded-3xl p-5`} delay={index * 0.05}>
               <p className="font-display text-3xl">{step.n}</p>
-              <TextReveal tag="h3" className="mt-3 font-display text-2xl" delay={index * 0.05}>
+              <TextReveal tag="h3" className="mt-3 font-display text-2xl" delay={index * 0.04}>
                 {step.title}
               </TextReveal>
               <p className="mt-2 text-sm">{step.body}</p>
-            </article>
+            </Rise>
           ))}
         </div>
       </section>
 
       <section className="bg-magenta text-surface">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 py-16 lg:grid-cols-2">
-          <img
-            src="/media/colaborare.jpg"
-            alt="Batem palma pentru colaborare"
-            className="aspect-[4/3] w-full rounded-3xl object-cover"
-          />
+          <Rise>
+            <img
+              src="/media/colaborare.jpg"
+              alt="Batem palma pentru colaborare"
+              className="aspect-[4/3] w-full rounded-3xl object-cover"
+            />
+          </Rise>
           <div>
             <p className="text-xs tracking-widest text-yellow uppercase">În magazin</p>
             <TextReveal tag="h2" className="mt-3 font-display text-4xl sm:text-5xl">
@@ -208,5 +225,27 @@ function Home() {
         </div>
       </section>
     </main>
+  );
+}
+
+const ticker = ["Cyan", "Magenta", "Galben", "Negru"] as const;
+
+function InkTicker({ progress, reduce }: { progress: MotionValue<number>; reduce: boolean }) {
+  const x = useTransform(progress, [0, 1], ["0%", "-42%"]);
+  const chips = Array.from({ length: 8 }, () => ticker).flat();
+
+  return (
+    <div className="overflow-hidden border-y border-line/80 bg-surface/75 py-3 backdrop-blur-sm">
+      <motion.div style={{ x: reduce ? 0 : x }} className="flex w-max gap-3 px-5">
+        {chips.map((name, index) => (
+          <span
+            key={`${name}-${index}`}
+            className={`${inkTones[index % inkTones.length]} rounded-full px-4 py-1 text-sm whitespace-nowrap`}
+          >
+            {name}
+          </span>
+        ))}
+      </motion.div>
+    </div>
   );
 }

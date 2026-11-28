@@ -4,18 +4,14 @@ import { type ElementType, type ReactNode } from "react";
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /**
- * TextReveal
- *
- * Reveals plain-text content word by word on scroll enter, with a small
- * upward drift and a staggered delay per word. Falls back to rendering the
- * children unchanged when reduced motion is preferred, or when children
- * isn't a plain string (e.g. it contains inline markup).
+ * Masked word reveal. Each word rises out of its own clip, with a short
+ * blur, when the line enters the viewport.
  */
 export function TextReveal({
   children,
   className,
   tag = "h2",
-  stagger = 0.07,
+  stagger = 0.045,
   delay = 0,
 }: {
   children: ReactNode;
@@ -35,25 +31,26 @@ export function TextReveal({
   const words = text.split(/\s+/).filter(Boolean);
 
   return (
-    <Tag className={className} style={{ display: "block" }}>
+    <Tag className={className}>
       {words.map((word, index) => (
-        <motion.span
-          key={`word-${index}`}
-          className="inline-block"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-8% 0px -12% 0px" }}
-          transition={{
-            duration: 0.55,
-            delay: delay + index * stagger,
-            ease,
-          }}
-        >
-          {word}
-          {/* Trailing space lives inside the animating span so it reveals
-              together with the word instead of flashing ahead of it. */}
-          {index < words.length - 1 && " "}
-        </motion.span>
+        <span key={`${word}-${index}`}>
+          <span className="inline-block overflow-hidden pb-[0.16em] -mb-[0.16em] align-bottom">
+            <motion.span
+              className="inline-block"
+              initial={{ y: "115%", filter: "blur(4px)" }}
+              whileInView={{ y: "0%", filter: "blur(0px)" }}
+              viewport={{ once: true, margin: "0px 0px -8% 0px" }}
+              transition={{
+                duration: 0.7,
+                delay: delay + index * stagger,
+                ease,
+              }}
+            >
+              {word}
+            </motion.span>
+          </span>
+          {index < words.length - 1 ? " " : null}
+        </span>
       ))}
     </Tag>
   );

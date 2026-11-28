@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
-import { finishes, inkTones, serviceBySlug, services, toneClass } from "@/lib/site";
+import { finishes, serviceBySlug, services } from "@/lib/site";
+import { Rise } from "@/components/rise";
+import { TextReveal } from "@/components/text-reveal";
 
 export const Route = createFileRoute("/servicii/$slug")({
   beforeLoad: ({ params }) => {
@@ -47,7 +49,9 @@ function ServicePage() {
       <section className="mx-auto grid max-w-6xl items-end gap-8 px-5 py-12 lg:grid-cols-2">
         <div>
           <p className="text-xs tracking-widest text-cyan uppercase">{service.kicker}</p>
-          <h1 className="mt-3 font-display text-5xl leading-none text-ink sm:text-6xl">{service.title}</h1>
+          <TextReveal tag="h1" className="mt-3 font-display text-5xl leading-none text-ink sm:text-6xl">
+            {service.title}
+          </TextReveal>
           <p className="mt-5 max-w-xl text-lg text-ink-soft">{service.summary}</p>
           <Link
             to="/contact"
@@ -62,12 +66,16 @@ function ServicePage() {
 
       <section className="border-y border-line bg-surface">
         <div className="mx-auto max-w-6xl px-5 py-14">
-          <h2 className="font-display text-3xl text-ink">Ce intră aici</h2>
+          <TextReveal tag="h2" className="font-display text-3xl text-ink">
+            Ce intră aici
+          </TextReveal>
           <ul className="mt-8 grid gap-x-10 gap-y-6 md:grid-cols-2">
-            {service.items.map((item) => (
+            {service.items.map((item, index) => (
               <li key={item.name} className="border-t border-line pt-4">
-                <h3 className="font-display text-2xl text-ink">{item.name}</h3>
-                <p className="mt-2 text-sm text-ink-soft">{item.body}</p>
+                <Rise delay={(index % 4) * 0.05}>
+                  <h3 className="font-display text-2xl text-ink">{item.name}</h3>
+                  <p className="mt-2 text-sm text-ink-soft">{item.body}</p>
+                </Rise>
               </li>
             ))}
           </ul>
@@ -77,7 +85,9 @@ function ServicePage() {
       {showFinishes ? (
         <section className="mx-auto max-w-6xl px-5 py-14">
           <p className="text-xs tracking-widest text-cyan uppercase">Alege direcția</p>
-          <h2 className="mt-2 font-display text-4xl text-ink">Finisajul schimbă piesa</h2>
+          <TextReveal tag="h2" className="mt-2 font-display text-4xl text-ink">
+            Finisajul schimbă piesa
+          </TextReveal>
           <div className="mt-8 flex flex-wrap gap-2" role="tablist" aria-label="Finisaje">
             {finishes.map((item) => {
               const selected = item.id === finish;

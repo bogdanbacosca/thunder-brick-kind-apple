@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { QuoteForm } from "@/components/quote-form";
+import { Rise } from "@/components/rise";
+import { TextReveal } from "@/components/text-reveal";
 import { shop } from "@/lib/site";
 
 type ContactSearch = { serviciu?: string };
@@ -28,7 +30,9 @@ function ContactPage() {
     <main className="mx-auto grid max-w-6xl gap-12 px-5 py-12 lg:grid-cols-5">
       <div className="lg:col-span-2">
         <p className="text-xs tracking-widest text-cyan uppercase">Contact</p>
-        <h1 className="mt-3 font-display text-5xl leading-none text-ink">Hai să colaborăm.</h1>
+        <TextReveal tag="h1" className="mt-3 font-display text-5xl leading-none text-ink">
+          Hai să colaborăm.
+        </TextReveal>
         <p className="mt-4 text-ink-soft">
           Sună, treci pe la magazin sau lasă detaliile lucrării. Răspundem în program.
         </p>
@@ -75,11 +79,11 @@ function ContactPage() {
           </li>
         </ul>
       </div>
-      <div className="rounded-3xl border border-line bg-surface p-5 sm:p-8 lg:col-span-3">
+      <Rise className="rounded-3xl border border-line bg-surface p-5 sm:p-8 lg:col-span-3" delay={0.08}>
         <h2 className="font-display text-3xl text-ink">Cerere de ofertă</h2>
         <p className="mt-2 mb-6 text-sm text-muted">Tiraj, format, termen. Cu cât e mai concret, cu atât oferta e mai scurtă.</p>
         <QuoteForm initialService={serviciu ?? ""} />
-      </div>
+      </Rise>
     </main>
   );
 }
