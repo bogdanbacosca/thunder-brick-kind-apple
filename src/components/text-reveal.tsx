@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import type { ElementType, ReactNode } from "react";
+import React, { type ElementType, type ReactNode } from "react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -37,21 +37,26 @@ export function TextReveal({
   return (
     <Tag className={className} style={{ display: "block" }}>
       {words.map((word, index) => (
-        <motion.span
-          key={index}
-          className="inline-block"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-8% 0px -12% 0px" }}
-          transition={{
-            duration: 0.55,
-            delay: delay + index * stagger,
-            ease,
-          }}
-        >
-          {word}
-          {index < words.length - 1 && " "}
-        </motion.span>
+        <React.Fragment key={`word-${index}`}>
+          <motion.span
+            className="inline-block"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-8% 0px -12% 0px" }}
+            transition={{
+              duration: 0.55,
+              delay: delay + index * stagger,
+              ease,
+            }}
+          >
+            {word}
+          </motion.span>
+          {index < words.length - 1 && (
+            <span className="inline-block" key={`space-${index}`}>
+              {" "}
+            </span>
+          )}
+        </React.Fragment>
       ))}
     </Tag>
   );
