@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Facebook, Mail, MapPin, Phone } from "lucide-react";
 import { QuoteForm } from "@/components/quote-form";
 import { Rise } from "@/components/rise";
 import { TextReveal } from "@/components/text-reveal";
@@ -16,7 +16,7 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact — Color Print Roman" },
       {
         name: "description",
-        content: "Color Print Roman, Str. Roman Mușat nr. 21, Roman. Telefon 0743 178 667. Luni–vineri 08–18.",
+        content: "Color Print Roman, Str. Roman Mușat nr. 21, Roman. Telefon 0753 581 170. Luni–vineri 08–18.",
       },
     ],
   }),
@@ -65,6 +65,12 @@ function ContactPage() {
             <Mail className="size-5 shrink-0 text-cyan" />
             <a href={`mailto:${shop.email}`} className="break-all text-ink">
               {shop.email}
+            </a>
+          </li>
+          <li className="flex gap-3">
+            <Facebook className="size-5 shrink-0 text-cyan" />
+            <a href={shop.facebook} target="_blank" rel="noopener noreferrer" className="text-ink underline-offset-4 hover:underline">
+              Facebook
             </a>
           </li>
           <li className="flex gap-3">
