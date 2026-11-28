@@ -201,12 +201,24 @@ export function Footer() {
             <Mark className="h-10 w-auto max-w-[200px] object-contain object-left" />
           </div>
           <p className="mt-4 max-w-sm text-paper/80">{shop.tagline} Copycenter, tipar și personalizare în Roman.</p>
+          <a
+            href={shop.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-sm text-paper underline-offset-4 hover:underline"
+          >
+            Facebook
+          </a>
         </div>
         <div>
           <p className="text-xs tracking-widest text-yellow uppercase">Atelier</p>
           <p className="mt-3">{shop.street}</p>
           <p>{shop.city}</p>
           <p className="mt-2 text-sm text-paper/70">{shop.landmark}</p>
+          <a href={`tel:${shop.phoneTel}`} className="mt-3 inline-flex items-center gap-2 text-sm text-paper hover:underline">
+            <Phone className="size-4" />
+            {shop.phoneDisplay}
+          </a>
         </div>
         <div>
           <p className="text-xs tracking-widest text-yellow uppercase">Program</p>
